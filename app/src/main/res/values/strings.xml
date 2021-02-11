@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Countries_KotlinMVVM</string>
+    <string name="error_string">Error Occured while loading data.</string>
+</resources>
