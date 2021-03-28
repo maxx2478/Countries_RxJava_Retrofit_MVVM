@@ -1,7 +1,9 @@
 package com.manohar.countries_kotlinmvvm.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.room.Room
 import com.manohar.countries_kotlinmvvm.model.CountriesService
 import com.manohar.countries_kotlinmvvm.model.Country
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,6 +18,7 @@ class ListViewModel:ViewModel()
     val isloading = MutableLiveData<Boolean>()
     private  val countriesService = CountriesService()
     private  val disposable = CompositeDisposable()
+
 
     fun refresh()
     {
@@ -33,14 +36,16 @@ class ListViewModel:ViewModel()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<List<Country>>()
                 {
-                    override fun onSuccess(value: List<Country>?) {
-                        countries.value = value
+
+                    override fun onSuccess(t: List<Country>) {
+                        countries.value = t
                         isloading.value = false
                         loaderror.value = false
                     }
 
-                    override fun onError(e: Throwable?) {
-                         loaderror.value = true
+                    override fun onError(e: Throwable) {
+                        loaderror.value = true
+                        Log.i("error", e.toString())
                         isloading.value=false;
                     }
                 })
@@ -48,26 +53,7 @@ class ListViewModel:ViewModel()
         )
 
 
-        /*
-        var mockdata = listOf(
-                Country("country1"),
-                Country("country2"),
-                Country("country3"),
-                Country("country4"),
-                Country("country5"),
-                Country("country6"),
-                Country("country7"),
-                Country("country8"),
-                Country("country9"),
-                Country("country10")
 
-                )
-
-
-        countries.value = mockdata
-        mockdataerror.value = false
-        isloading.value = false
-*/
 
     }
 

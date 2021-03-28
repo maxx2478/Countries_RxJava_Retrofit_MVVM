@@ -5,7 +5,15 @@
     app:cardCornerRadius="4dp"
     android:layout_margin="5dp"
     app:cardElevation="6dp"
-    android:layout_height="@dimen/layout_height">
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:layout_height="wrap_content">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +24,7 @@
             android:scaleType="centerCrop"
             android:layout_width="0dp"
             android:layout_weight="3.6"
-            android:layout_height="match_parent"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:padding="5dp"
             android:layout_marginEnd="11dp"
@@ -45,7 +53,72 @@
         </LinearLayout>
     </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Regions:"
+            />
 
+        <TextView
+            android:id="@+id/regions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Regions data"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sub Regions:"
+            />
+
+        <TextView
+            android:id="@+id/subregions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sub Regions data"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Population:"
+            />
+
+        <TextView
+            android:id="@+id/population"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Population data"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Borders:"
+            />
+
+        <TextView
+            android:id="@+id/borders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Borders data"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Languages:"
+            />
+
+        <TextView
+            android:id="@+id/languages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Languages data"
+            />
+
+    </LinearLayout>
 
 
 </androidx.cardview.widget.CardView>
