@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         slayout.setOnRefreshListener {
             slayout.isRefreshing = false
             viewModel.refresh()
+            observeViewModel()
         }
 
         db= Room.databaseBuilder(applicationContext, AppDB::class.java,"BookDB").build()
@@ -68,7 +69,8 @@ class MainActivity : AppCompatActivity() {
         }
         else
         {
-           fetchfromDB()
+            fetchDatabaseForFirstTime()
+            Toast.makeText(this, "Data fetched from Room Database", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -186,6 +188,23 @@ class MainActivity : AppCompatActivity() {
                 else {
                     Toast.makeText(this@MainActivity, "Data Cleared in Offline Mode", Toast.LENGTH_SHORT).show()
                 }
+            }
+
+        }
+
+    }
+
+    fun fetchDatabaseForFirstTime()
+    {
+        CoroutineScope(Dispatchers.IO).launch {
+            list= db!!.countryDao().getAllBooks()
+            withContext(Dispatchers.Main)
+            {
+                findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
+                findViewById<TextView>(R.id.list_error).visibility = View.GONE
+                findViewById<RecyclerView>(R.id.countriesList).visibility = View.VISIBLE
+                countriesAdapter!!.updateCountryList(list!!)
+
             }
 
         }
